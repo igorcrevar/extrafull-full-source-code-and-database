@@ -1,0 +1,43 @@
+#editor{
+padding:10px 0px 10px 3px;
+border-top:1px dotted #000;
+}
+
+#editor img, #editor-smiles img{
+vertical-align:top;
+border-style:none
+}
+#editor-helper{
+padding-left:10px;
+border-bottom:1px dotted #000;
+width:95%;
+margin-bottom:5px;
+}
+
+#editor-smiles-pick{
+padding:1px;
+position:absolute;
+border:1px solid #000;
+}
+
+#editor-smiles{
+display:none;
+background:#FFF;
+padding:4px;
+padding-left:20px;
+width:144px;
+border:3px double #000;
+}
+
+#editor-smiles a{
+/*padding:6px;*/
+display:block;
+float:left;
+width:36px;
+height:36px;
+background:none;
+}
+
+#editor-topics{
+padding:4px 0px;
+}

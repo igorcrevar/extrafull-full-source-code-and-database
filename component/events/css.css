@@ -1,0 +1,77 @@
+.ev2{
+  padding:0px 0px 5px 0px;
+	text-align:justify;
+	width:500px;
+	border-bottom: 1px dashed silver;
+	margin: 0px 0px 5px 3px;
+}
+.ev-f2{
+	float:left;width:108px;text-align:center;
+}
+.ev-s2{
+	float:left;width:380px;overflow:hidden;
+}
+
+.ev{
+  padding:0px 0px 5px 10px;
+	text-align:justify;
+	width:500px;
+	border-bottom: 1px dashed silver;
+	margin: 0px 0px 10px 5px;
+}
+.ev-f{
+	float:left;width:108px;text-align:center;
+}
+.ev-s{
+	float:left;width:380px;overflow:hidden;
+}
+
+.ev-hd{
+	/*background:url(/templates/rt_novus_j15/images/title.jpg) bottom repeat-y;*/
+	background:url(/template/normal/images/input.jpg) bottom repeat;
+	color:#FFF;
+	margin:2px 0px;
+	padding:0px 2px;
+	width:456px;
+	border: 1px solid #0099cc;	
+}
+#events_block{
+	float:left;
+	width:64%;
+}
+#calend_block{
+	float:left;
+	width:34%;
+	padding-left:14px;
+	text-align:right;
+}
+.lft{
+	float:left;
+	width:60%;
+}
+.rght{
+	float:left;
+	text-align:right;
+	width:39%;
+}
+.ev-loc{
+	font-family:Tahoma,sans-serif;
+	font-size:17px;
+}
+.ev-date{
+  font-size:12px;
+	line-height:24px;
+}
+.ev2{
+	font-size:9px;
+}
+
+#add_form{
+	width:400px;
+	margin:0px auto;
+	text-align:center;
+}
+
+.ev br {
+	line-height: 1px;
+}

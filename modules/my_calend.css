@@ -1,0 +1,88 @@
+#my_calendar table{
+	width:100%;
+	border: 2px solid #D4EEF7;
+	background:#FFFFFF;
+}
+#my_calendar table tr{
+	padding:0px;
+	margin:0px;
+}
+#my_calendar table tr th{
+	border-bottom: 2px solid #0099cc;
+	color:#000;
+}
+#my_calendar table td,#my_calendar table tr th{
+text-align:center;
+}
+#my_calendar table td{
+
+}
+#my_calendar table td.today{
+   border: 1px solid #d4eef7;
+   color: #414548;
+   background: #d4eef7;
+   font-weight: bold;
+}
+.tool-title {
+   padding: 0;
+   margin: 0;
+   font-size: 100%;
+   font-weight: bold;
+   margin-top: -15px;
+   padding-top: 15px;
+   padding-bottom: 5px;
+}
+
+.tool-text{
+	border: 1px solid #24aade;
+	background: #d4eef7;
+	color: #414548;
+	padding:0px;
+	margin:0px;
+}
+
+.tool-text div{
+   font-weight:normal;
+   font-size: 100%;
+   margin: 0px 2px;
+   padding:2px 2px 2px 14px;
+   background: url(../template/normal/images/arrow.gif) 4px 3px no-repeat;
+}
+
+/*added by shone*/
+#my_calendar caption {
+	background: url(../template/normal/images/title.jpg) right no-repeat;
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+	font-size: 10px;
+	height: 22px;
+	line-height: 22px; /*zbog postavljanja texta u centar (u donosu na y osu) u okviru naslova*/
+	margin-bottom: 2px;
+	padding-left: 0px; /*zbog nasledjivanja iz basic.css-a gde je padding-left 15px*/
+}
+
+a.tooltip {
+	width:100%;
+	text-align:center;
+	display:block;
+	color: #fff;
+	font-weight: bold;
+	background: url(../template/normal/images/input.jpg) repeat;
+	border: 1px solid #24aade;
+	text-decoration: none;
+}
+a.tooltip:hover {
+	border: 1px solid #24aade;
+	background: #d4eef7;
+	color: #414548;
+}
+
+#my_calendar caption a {
+	color: #60cef1;
+	text-decoration: none;
+}
+#my_calendar caption a:hover {
+	color: #d4eef7;
+	background: none;
+}

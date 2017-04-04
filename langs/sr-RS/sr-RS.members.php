@@ -1,0 +1,64 @@
+<?php $text['MB_STATUS']='Trenutni status';
+$text['MB_HEAD']='Profil člana -';
+$text['MB_KARMA_M1']='Karma';
+$text['MB_KARMA_M2']='Br.ocena';
+$text['MB_FRIEND_HD']='Prijateljstvo';
+$text['MB_P_MSG_HD']='Privatna poruka';
+$text['MB_P_MSG_SUB']='Naslov';
+$text['MB_P_MSG_TXT']='Tekst';
+$text['MB_P_MSG_B']='Pošalji';
+$text['MB_FRIEND_B']='Pošalji zahtev';
+$text['MB_VISIT']='Poseta profilu';
+$text['MB_PICTURE']='Slika';
+$text['MB_REG']='Registrovan od';
+$text['MB_LAST_VISIT']='Poslednja poseta';
+$text['MB_PICS_HD']='Moje slike...';
+$text['MB_PICS_FAV']='Omiljene';
+$text['MB_PICS_CMNTS']='Komentarisane';
+$text['MB_PICS_VOTED']='Ocenjene';
+$text['MB_FRIENDS_HD']='Najbolji prijatelji...';
+$text['MB_ONLINE']='[trenutno on-line]';
+$text['MB_NAME']='Ime i prezime';
+$text['MB_SEX']='Pol';
+$text['MB_MALE']='muško';
+$text['MB_FEMALE']='žensko';
+$text['MB_BIRTH']='Datum rođenja';
+$text['MB_LOVE']='Ljubavni status';
+$text['MB_LOVE_VALS']='nisam u vezi,u vezi sam,u braku sam,razveden/a sam,swingerujem :),nesrećno zaljubljen/a,letim s\' cveta na cvet :),...,varijante samo';
+$text['MB_LOCATION']='Mesto prebivališta';
+$text['MB_ABOUT']='O meni...';
+$text['MB_SIGN']='Potpis...';
+$text['MB_CLUBS']='Gde izlazi...';
+$text['MB_CMNTS']='Komentari...';
+$text['MB_CMNTS_M']='Imate na raspolaganju <span id="chars_left">400</span> karaktera za komentar';
+$text['MB_CMNTS_B']='Pošalji';
+$text['MB_ERASE_CMNT']='[obriši]';
+
+$text['LOOK_ALL_FR']='Pogledaj sve prijatelje';
+$text['LOOK_MALE_FR']='Pogledaj sve muške prijatelje';
+$text['LOOK_FEMALE_FR']='Pogledaj sve ženske prijatelje';
+$text['TOP_FRIENDS']='Odredi najbolje prijatelje!!';
+$text['BEHOLDERS']='Poslednji posetioci profila...';
+
+$text['STATISTICS']='[+ Statistika komentara i postova člana]';
+$text['DESCRIPTIONS']='[+ Kako su člana opisali najbolji prijatelji]';
+$text['COMMENTS']='[+ Prikaži mi prethodne komentare]';
+$text['MB_CMNTS_DESCS']='Imate na raspolaganju <span id="chars_left2">300</span> karaktera za opis';
+$text['MB_DESCS_NONE']='Član nema ni jedan opis!';
+
+$text['MUSIC']='Muzika : ';
+$text['MUSICS']='Alternativa,Narodna/Turbo Folk,Punk,Rock/Rock\'n\'Roll,Metal,Pop,Zabavna,Rap/Hip-hop,Reggae,Electro/Techno,Klasična,Jazz/Blues,Funky,R\'n\'b';
+$text['MOODS'] ='...,Zaljubljeno,Smoreno,Usamljeno,Dosadno,Blesavo,Preplašeno,Srećno&Veselo,Ljutito,Posramljeno,Pijano,Fantastično,Romantično,Čudno,Zadovoljno,Opušteno,Pospano,Nervozno,Naaadrkano,Totalno gay,Autistično,Nostalgično,Mamurno,Napaljeno, Zauzeto,Zbunjeno,Optimistično,Pesimistično,Sexy,Tužno,Bolesno,U fullu';
+$text['MOOD']='Raspoloženje';
+$text['MB_LAST5_CMNTS']='Poslednji...';
+$text['MB_LAST5_MSGS']='Poslednji...';
+$text['MB_FORUM_MSGS']='Broj postova na forumu :';
+$text['MB_PHOTO_CMNTS']='Broj komentara slika :';
+$text['TITLE_PROFIL']='Extrafull profil člana';
+
+$text['CHANGES']='%s je promenio/la podatke na profilu,%s je promenio/la sliku na profilu,%s je postavio/la novu sliku u svoju galeriju,%s je';
+$text['CHANGES_HD']='Extrafull wall';
+$text['CHANGES_OP1']='[Svi članovi]';
+$text['CHANGES_OP2']='[Prijatelji samo]';
+$text['IS']='trenutno...';
+?>

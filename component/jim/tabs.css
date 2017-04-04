@@ -1,0 +1,63 @@
+
+UNKNOWN {
+	FONT-SIZE: small
+}
+#header-jim {
+	FONT-SIZE: 93%; BACKGROUND: url(images/bg.gif)  repeat-x 50% bottom; FLOAT: left; WIDTH: 100%; LINE-HEIGHT: normal
+}
+#header-jim UL {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 10px; LIST-STYLE-TYPE: none
+}
+#header-jim LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 9px; BACKGROUND: url(images/left.gif) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#header-jim A {
+	PADDING-RIGHT: 15px; DISPLAY: block; PADDING-LEFT: 6px; FONT-WEIGHT: bold; BACKGROUND: url(images/right.gif) no-repeat right top; FLOAT: left; PADDING-BOTTOM: 4px; COLOR: #765; PADDING-TOP: 5px; TEXT-DECORATION: none
+}
+#header-jim A {
+	FLOAT: none
+}
+#header-jim A:hover {
+	COLOR: #333
+}
+#header-jim #current {
+	BACKGROUND-IMAGE: url(images/left_on.gif)
+}
+#header-jim #current A {
+	BACKGROUND-IMAGE: url(images/right_on.gif); PADDING-BOTTOM: 5px; COLOR: #333
+  text-decoration: none!important;
+}
+#mesg{
+    text-decoration: none!important;
+    text-align: center!important;
+
+}
+
+
+/** list bullet format **/
+.nobul {
+	list-style-image: none;
+	list-style-type: none;
+}
+
+#jim-body{
+  border: thin solid #776655;
+  border-top: none;
+}
+.pmmodule {
+font: arial;
+  font-size: 12px;
+  text-decoration: none!important;
+  text-align: center;
+}
+
+a.pmmodule {
+  line-height: 100%;
+  text-decoration: none!important;
+}
+
+.jimtitle {
+border-bottom : 1px solid #EFEFEF ;
+text-align : right;
+vertical-align: bottom;
+}
