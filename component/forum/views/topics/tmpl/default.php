@@ -3,7 +3,8 @@ $doc = &Document::getInstance();
 $doc->setTitle('Extrafull forum - '.$this->cat->name);
 echo '<div style="padding:4px">';
 echo '<span class="pathway">';
-echo JHTML::lnk('forum','Forum').'<img src="ddd"/>'.$this->cat->name;
+$dummyImg = '<img src="data:," alt>';
+echo JHTML::lnk('forum','Forum').$dummyImg.$this->cat->name;
 echo '</span><br/>';
 
 $this->loadParticle( 'forum', 'search', array( 'cid' => $this->cat->id) );

@@ -3,6 +3,7 @@ function include_module($component,$action,$params = array() ){
 	$object = &Module::loadInstance($component);
 	$object->execute($action, $params);	
 }
+
 function url_for($url,$full = false){
 	$parsed = !$full ? Basic::routerBase() : Basic::uriBase();
 	$pos = strpos( '?', $url);
@@ -17,6 +18,7 @@ function url_for($url,$full = false){
 	}
 	return $parsed.$url;
 }
+
 function seo_title($title){
 	return trim( preg_replace( '/ +/', '-', preg_replace('/[^a-zA-Z ]+/', ' ', $title) ) , '-' );
 }

@@ -137,8 +137,8 @@ if ( count($this->errors) ){
 		<input type="text" name="scode" maxlength="4" />
 	</td>		
 	<td align="left">
-		<img src="<?php echo Basic::routerBase();?>/img.php?sid=<?php echo md5(uniqid(time())); ?>" id="captchaimage" align="absmiddle" />
-		<a href="#" onclick="document.getElementById('captchaimage').src = '<?php echo Basic::routerBase();?>/img.php?sid=' + Math.random(); return false">[druga slika]</a>
+		<img src="<?php echo Basic::uriBase();?>/img.php?sid=<?php echo md5(uniqid(time())); ?>" id="captchaimage" align="absmiddle" />
+		<a href="#" onclick="document.getElementById('captchaimage').src = '<?php echo Basic::uriBase();?>/img.php?sid=' + Math.random(); return false">[druga slika]</a>
 	</td>	
 </tr>	
 

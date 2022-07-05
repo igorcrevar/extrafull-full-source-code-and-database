@@ -12,6 +12,7 @@ require_once(BASE_PATH.DS.'modules'.DS.'crewMost.php');
 <div style="float:left;width:500px;padding-right:8px">
 <?php $news = JText::_('NEWS_MY');
 if (!empty($news)){
+  $news = str_replace("{{BASE}}", Basic::uriBase(), $news);
 ?>
 <div class="myWindow">		
 <h3 class="normal">Obavestenje</h3>

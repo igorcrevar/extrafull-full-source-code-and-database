@@ -10,6 +10,7 @@ class Module{
 		}
 		return self::$objects[$component];
 	}
+
 	public function execute($action, $params){
 		$methodName = 'execute'.ucfirst($action);
 		foreach ($params as $k => $v){

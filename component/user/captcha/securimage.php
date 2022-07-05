@@ -419,7 +419,7 @@ class Securimage {
    
   var $rSession;  
    
-  function Securimage()
+  public function __construct()
   {
   	$this->rSession = &Session::getInstance();
   	/*
@@ -658,12 +658,12 @@ class Securimage {
           $g = substr($colors[$idx], 3, 2);
           $b = substr($colors[$idx], 5, 2);
           if($this->use_transparent_text == true) {
-            $font_color = imagecolorallocatealpha($this->im, "0x$r", "0x$g", "0x$b", $alpha);
+            $font_color = imagecolorallocatealpha($this->im, hexdec("0x$r"), hexdec("0x$g"), hexdec("0x$b"), $alpha);
           } else {
-            $font_color = imagecolorallocate($this->im, "0x$r", "0x$g", "0x$b");
+            $font_color = imagecolorallocate($this->im, hexdec("0x$r"), hexdec("0x$g"), hexdec("0x$b"));
           }
         }
-        imagettftext($this->im, $this->font_size, $angle, $x, $y, $font_color, $this->ttf_file, $this->code{$i});
+        imagettftext($this->im, $this->font_size, $angle, $x, $y, $font_color, $this->ttf_file, $this->code[$i]);
 
         $x += rand($this->text_minimum_distance, $this->text_maximum_distance);
       } //for loop
@@ -703,7 +703,8 @@ class Securimage {
     $code = '';
 
     for($i = 1, $cslen = strlen($this->charset); $i <= $len; ++$i) {
-      $code .= strtoupper( $this->charset{rand(0, $cslen - 1)} );
+      $ind = rand(0, $cslen - 1);
+      $code .= strtoupper( $this->charset[$ind] );
     }
     return $code;
   }
@@ -794,7 +795,7 @@ class Securimage {
     }
 
     for($i = 0; $i < strlen($code); ++$i) {
-      $letters[] = $code{$i};
+      $letters[] = $code[$i];
     }
 
     return $this->generateWAV($letters);
@@ -952,5 +953,3 @@ class Securimage {
     return $out_data;
   }
 } /* class Securimage */
-
-?>

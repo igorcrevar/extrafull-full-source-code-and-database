@@ -8,23 +8,21 @@
 ||
 || ##################################################################
 =============================================================================*/
-class JController
-{
-	var $_name = null;
-	var $_doTask 	= null;
-	var $_taskMap = null;
-	var $_redirect 	= null;
-	var $_message 	= null;
-	
-	function __construct()
-	{
+class JController {
+	protected $_name = null;
+	protected $_doTask 	= null;
+	protected $_taskMap = null;
+	protected $_redirect 	= null;
+	protected $_message 	= null;
+
+	function __construct(){
 		//Initialize private variables
 		$this->_redirect	= null;
 		$this->_message		= null;
 		$this->_taskMap		= array();
 		$this->_name = '';
 		$this->_doTask = null;
-		
+
 		$thisMethods	= get_class_methods( get_class( $this ) );
 		$baseMethods	= get_class_methods( 'JController' );
 		$methods		= array_diff( $thisMethods, $baseMethods );
@@ -36,7 +34,7 @@ class JController
 			}
 		}
 	}
-	
+
 	function setName($cn){
 		$this->_name = strtolower($cn);
 	}
@@ -50,23 +48,22 @@ class JController
 		}
 		else {
 			//TBD error task
-			die('Ne postoji taj kontroler');	
+			die('Ne postoji taj kontroler');
 		}
 	}
 
 	function redirect(){
 		if ($this->_redirect == null) return;
 		global $mainframe;
-		$mainframe->redirect(	$this->_redirect, $this->_message );	
+		$mainframe->redirect(	$this->_redirect, $this->_message );
 	}
 
-	function getModel( $name = '', $prefix = '' )
-	{
+	function getModel( $name = '', $prefix = '' ){
 		$name	 = preg_replace( '/[^A-Z0-9_]/i', '', $name );
 		$prefix = preg_replace( '/[^A-Z0-9_]/i', '', $prefix );
 		$name = strtolower($name);
 		$prefix = strtolower($prefix);
-		
+
 		$path = BASE_PATH.DS.'component'.DS.$this->_name.DS.'models'.DS.$name.'.php';
 		if ( !file_exists($path) ) die();
 		require_once $path;
@@ -75,9 +72,7 @@ class JController
 		return new $modelname($modelname);
 	}
 
-	
-	function getView( $name = '', $type = '', $prefix = '' )
-	{
+	function getView( $name = '', $type = '', $prefix = '' ){
 		if ($prefix == ''){
 			$prefix = ucfirst($this->_name).'View';
 		}
@@ -88,7 +83,7 @@ class JController
 		$prefix = strtolower($prefix);
 		$name = strtolower($name);
 		$type = strtolower($type);
-		
+
 		$path = BASE_PATH.DS.'component'.DS.$this->_name.DS.'views'.DS.$name.DS.'view.'.$type.'.php';
 		if ( !file_exists($path) ) die();
 		require_once $path;
@@ -97,28 +92,25 @@ class JController
 		return new $viewname($name,$this->_name );
 	}
 
-	function registerTask( $task, $method )
-	{
+	function registerTask( $task, $method ){
 		if ( in_array( strtolower( $method ), $this->_methods ) ) {
 			$this->_taskMap[strtolower( $task )] = $method;
 		}
 	}
 
-	function setMessage( $text )
-	{
+	function setMessage( $text ){
 		$previous		= $this->_message;
 		$this->_message = $text;
 		return $previous;
 	}
 
-	function setRedirect( $url, $msg = null )
-	{
+	function setRedirect( $url, $msg = null ){
 		$this->_redirect = $url;
 		if ($msg !== null) {
 			$this->_message	= $msg;
 		}
 	}
-	
+
 	function forward($name = null, $params = null){
 		if ( $params != null ){
 			$params = explode( '&', $params );
@@ -135,7 +127,6 @@ class JController
 		}
 		else{
 			$this->execute(JRequest::getVar('task', 'display', 'default', 'cmd'));
-		}		
+		}
 	}
-
 }

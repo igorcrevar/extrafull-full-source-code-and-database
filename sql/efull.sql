@@ -211,6 +211,18 @@ INSERT INTO `jos_fb_users` (`userid`, `uhits`, `karma_time`, `friends`, `blogs`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jos_banned_ip`
+--
+
+CREATE TABLE `jos_banned_ip` (
+  `ip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `time` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jos_forum_cats`
 --
 

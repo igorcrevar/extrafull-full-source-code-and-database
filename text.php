@@ -37,9 +37,9 @@ class JText{
 	
 	public static function _($key){
 		global $text;
-    if (!isset($text[$key])){
-      return $key;
-    }
+    	if (!isset($text[$key])){
+      		return $key;
+    	}
 		return $text[$key]; //strtoupper($key)];
 	}
 		

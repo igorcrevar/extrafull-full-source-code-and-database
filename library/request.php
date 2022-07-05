@@ -22,72 +22,71 @@ class JRoute{
 			 $query[$key] = $val; 
 		}
 		//$query['option'] = substr($query['option'],4);
-    if (!isset($query['view'])) {
-      $query['view'] = '';
-    }
-    if (!isset($query['option'])) {
-      $query['option'] = '';
-    }
-  	switch ( substr($query['option'], 4, 3) ){
-  			case 'pho':			
-  			  if ($query['view'] == 'image')
-  			  {
-  			    $tmp = 'slika';
-  			  }
-  			  else if ($query['view'] == 'event'){
-  			    $tmp = 'galerija';
-  			  }
-  			  else if ($query['view'] == 'images'){
-  			    $tmp = 'slike';
-  			  }
-  			  else if ($query['view'] == 'imageupload'){
-  			    $tmp = 'galerije/upload';
-  			  }
-  			  else{
-  			  	$tmp = 'galerije';
-  			  }
-  		    unset($query['view']);
-  			  break;
-  			case 'mem':
-  			  $tmp2 = substr($query['view'],0,3);
-  			  if ($tmp2 == 'pro')
-  			  {
-  			    $tmp = 'profil';
-  			    unset($query['view']);
-  			  }
-  			  else if ($tmp2 == 'use' || $tmp2=='' || !isset($tmp2) ){
-  			    $tmp = 'clanovi';
-  			    unset($query['view']);
-  			  }
-  			  else if ($tmp2 == 'fri'){
-  			  	$tmp = 'clan/prijatelji';
-  			  	unset($query['view']);
-  			  }
-  			  else if ($tmp2 == 'myp'){
-  			  	$tmp = 'clan/mojprofil';
-  			  	unset($query['view']);
-  			  }
-  			  else {
-  			  	$tmp = 'clan';
-  			  }			
-  			  break;
-  			case 'fir':$tmp = 'forum';break;
-  			case 'eve':
-  				$tmp = 'desavanja';
-  				break;			
-  			case 'jim':$tmp = 'poruke';break;
-  			case 'use':$tmp= 'korisnik';break;
-  			default:$tmp = '';break;
+		if (!isset($query['view'])) {
+			$query['view'] = '';
+		}
+		if (!isset($query['option'])) {
+			$query['option'] = '';
+		}
+		switch ( substr($query['option'], 4, 3) ){
+			case 'pho':			
+				if ($query['view'] == 'image')
+				{
+					$tmp = 'slika';
+				}
+				else if ($query['view'] == 'event'){
+					$tmp = 'galerija';
+				}
+				else if ($query['view'] == 'images'){
+					$tmp = 'slike';
+				}
+				else if ($query['view'] == 'imageupload'){
+					$tmp = 'galerije/upload';
+				}
+				else{
+					$tmp = 'galerije';
+				}
+				unset($query['view']);
+				break;
+			case 'mem':
+				$tmp2 = substr($query['view'],0,3);
+				if ($tmp2 == 'pro')
+				{
+					$tmp = 'profil';
+					unset($query['view']);
+				}
+				else if ($tmp2 == 'use' || $tmp2=='' || !isset($tmp2) ){
+					$tmp = 'clanovi';
+					unset($query['view']);
+				}
+				else if ($tmp2 == 'fri'){
+					$tmp = 'clan/prijatelji';
+					unset($query['view']);
+				}
+				else if ($tmp2 == 'myp'){
+					$tmp = 'clan/mojprofil';
+					unset($query['view']);
+				}
+				else {
+					$tmp = 'clan';
+				}			
+				break;
+			case 'fir':$tmp = 'forum';break;
+			case 'eve':
+				$tmp = 'desavanja';
+				break;			
+			case 'jim':$tmp = 'poruke';break;
+			case 'use':$tmp= 'korisnik';break;
+			default:$tmp = '';break;
 		}		
 		$component = preg_replace('/[^A-Z0-9]/i', '', $query['option']);
 		$component = str_replace('com','',$component);
 		unset($query['option']);
 		if ( empty($query) ){
-			 return Basic::routerBase().'/'.$tmp;
+			return Basic::routerBase().'/'.$tmp;
 		}
 		$path = BASE_PATH.DS.'component'.DS.$component.DS.'router.php';
-		if (file_exists($path))
-		{
+		if (file_exists($path)){
 			require_once $path;
 			$function	= $component.'BuildRoute';
 			$parts		= $function($query);
@@ -185,9 +184,13 @@ class JRequest
 				$var = JRequest::_cleanVar($input[$name], $mask, $type);
 
 				// Handle magic quotes compatability
-				if (get_magic_quotes_gpc() && ($var != $default) && ($hash != 'FILES')) {
-					$var = JRequest::_stripSlashesRecursive( $var );
-				}
+				// changed by crew in 6.VII.2022. Hopefully this is ok
+				if((function_exists("get_magic_quotes_gpc") && get_magic_quotes_gpc()) || 
+					(ini_get('magic_quotes_sybase') && (strtolower(ini_get('magic_quotes_sybase'))!="off")) ){ 
+					if (get_magic_quotes_gpc() && ($var != $default) && ($hash != 'FILES')) {
+						$var = JRequest::_stripSlashesRecursive( $var );
+					}
+				}				
 
 				$GLOBALS['_JREQUEST'][$name][$sig] = $var;
 			}

@@ -26,7 +26,7 @@ foreach($this->rows as $row){
 	echo JHTML::image('arrow.gif').' '.showtime($row->time).' ';
 	echo $t;
 	if ( $this->area == 2 ){
-		echo '<div style="padding-left:150px"><img src="/avatars/'.$row->avatar.'" /></div><br />';
+		echo '<div style="padding-left:150px"><img src="'.Basic::routerBase().'/avatars/'.$row->avatar.'" /></div><br />';
 	}
 	if ( $this->area == 3 ){
 		echo '<div style="padding-left:150px">';

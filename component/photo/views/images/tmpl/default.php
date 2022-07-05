@@ -14,7 +14,7 @@ if ($this->stat==0){
   $user = & User::getInstance();
   $user_id = $user->id;
 }
-if (count($this->imgs)>0){
+if ($this->imgs && count($this->imgs)>0){
 echo '<table>';
   $i = 0;
   foreach($this->imgs as $row){

@@ -9,10 +9,8 @@
 || ##################################################################
 =============================================================================*/
 defined('CREW') or die();
-class JHTML
-{
-	public static function date($date, $format = null)
-	{
+class JHTML{
+	public static function date($date, $format = null){
 		if (!$date) {
 		   return '';
 		}
@@ -20,28 +18,26 @@ class JHTML
 			$date = date('Y-m-d H:i',$date);
 		}
     
-    if (strpos($date, ' ')) {
-      list($dt,$tm) = explode(' ',$date);
-    } else {
-       $dt = $date;
-       $tm = '';
-    }
+		if (strpos($date, ' ')) {
+			list($dt,$tm) = explode(' ',$date);
+		} else {
+			$dt = $date;
+			$tm = '';
+		}
    
 		list($y,$m,$d) = explode('-',$dt);
-		if ( $format == 'date' )
-		{
+		if ( $format == 'date' ){
 			 return "$d.$m.$y.";
 		}
-		else if ( $format == 'date2' )
-		{
+		else if ( $format == 'date2' ){
 			 $dy = date( 'N', mktime(0, 0, 0, $m,$d , $y) );
 			 $weekdays = explode(',',JText::_('DAYS'));
 			 $tmp = $weekdays[$dy-1];
 			 return "$tmp, $d.$m.$y.";
 		}
 
-	  list($h,$mn) = explode(':',$tm);
-	  return "$d.$m.$y. $h:$mn";
+		list($h,$mn) = explode(':',$tm);
+		return "$d.$m.$y. $h:$mn";
 	}
 	
 	public static function genlist($rows,$name,$extra,$left,$right,$selected=null){
@@ -117,13 +113,13 @@ class JHTML
 	}
 
 	public static function date2Timestamp($datetime){
-		 if (!$datetime) {
-		    return 0;
-		 }
-     $val = explode(" ",$datetime);
-     $date = explode("-",$val[0]);
-     $time = explode(":",$val[1]);
-     return mktime($time[0],$time[1],$time[2],$date[1],$date[2],$date[0]);
+		if (!$datetime) {
+			return 0;
+		}
+		$val = explode(" ",$datetime);
+		$date = explode("-",$val[0]);
+		$time = explode(":",$val[1]);
+		return mktime($time[0],$time[1],$time[2],$date[1],$date[2],$date[0]);
 	}
 	
 	public static function lnk($link,$txt,$add = ''){
@@ -149,4 +145,3 @@ class JHTML
 		}		
 	}
 }
-?>

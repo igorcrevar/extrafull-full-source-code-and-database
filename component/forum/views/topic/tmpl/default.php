@@ -9,7 +9,8 @@ $myid = $user->id;
 require_once(JPATH_BASE.DS.'editor'.DS.'editor.php');	
 echo '<div style="padding:4px">';
 echo '<span class="pathway">';
-echo JHTML::lnk('forum','Forum').'<img src="ddd"/>'.JHTML::lnk('forum?cid='.$this->topic->cid,$this->topic->name).'<img src="ddd"/>'.$this->topic->subject;
+$dummyImg = '<img src="data:," alt>';
+echo JHTML::lnk('forum','Forum').$dummyImg.JHTML::lnk('forum?cid='.$this->topic->cid,$this->topic->name).$dummyImg.$this->topic->subject;
 echo '</span><br/>';
 echo '<div style="text-align:right;">';
 if ($this->rights > 1){

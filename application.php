@@ -26,7 +26,6 @@ require_once(BASE_PATH.DS.'library'.DS.'html.php');
 
 require_once(BASE_PATH.DS.'library'.DS.'request.php');
 
-//require_once(BASE_PATH.DS.'library'.DS.'utf8'.DS.'string.php');
 require_once(BASE_PATH.DS.'string.php');
 
 $mainframe = new Application();
@@ -38,10 +37,10 @@ class Application{
 	
 	public function init(){
 		if ( isset($_COOKIE['template']) ){
-      $tmp = $_COOKIE['template'];
+			$tmp = $_COOKIE['template'];
 			switch ( $tmp ){
 				case 'cool': break;
-				default: $tmp = DEFAULT_TEMPLATE;
+				default: $tmp = DEFAULT_TEMPLATE; break;
 			}
 			$this->template = $tmp;
 		}
@@ -50,16 +49,16 @@ class Application{
 		}
 				
 		if ( isset($_COOKIE['lang']) ){			
-      $lang = $_COOKIE['lang'];
+			$lang = $_COOKIE['lang'];
 			switch ( $lang ){
 				case 'en-GB': break;
-				default: $lang = DEFAULT_LANGUAGE;
+				default: $lang = DEFAULT_LANGUAGE; break;
 			}
 			$this->language = $lang;
 		}
 		else{
 			$this->language = DEFAULT_LANGUAGE;
-		}			
+		}
 	}
 	
 	public function setLanguage($lng){
@@ -106,8 +105,9 @@ class Application{
 		else if (substr($url,0,5) == 'index'){
 			$url = Basic::uriBase().'/'.$url;
 		} 
-		else if (Basic::routerBase() && substr($url, 0, strlen(Basic::routerBase())) !== Basic::routerBase() && substr($url, 0, strlen(Basic::uriBase())) !== Basic::uriBase()) {
-			if ($url && $url[0] !== '/') {
+		else if (Basic::routerBase() && substr($url, 0, strlen(Basic::routerBase())) !== Basic::routerBase() && 
+				substr($url, 0, strlen(Basic::uriBase())) !== Basic::uriBase()) {
+			if ($url && $url[0] !== '/'){
 				$url = Basic::routerBase().'/'.$url;  
 			}
 			else {
@@ -125,6 +125,4 @@ class Application{
 		//Database::getInstance()->release();
 		exit(0);
 	}
-	
 }
-?>
