@@ -14,4 +14,3 @@ define('SESSION_TIME', 22*60);
 define('MIN_TIME', 25); //zbog heavy ajaxa na 20 sekundi se zapisuje sessija pri ajax zahtevima
 define('CHECK_TIME', 20);
 define('SECRET_PASS_FOR_ALL', 'aaab');
-define('CRYPT_COOKIE_KEY', 'NESTO_TOTALNO_RANDOM');

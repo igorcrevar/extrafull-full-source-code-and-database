@@ -94,7 +94,7 @@ class User{
 					return 'E_LOGIN_AUTHENTICATE';
 				}
 			}
-			if ( ($row->block & 1) > 0 ){ //blokirano logovanje
+			if ( ($row->block & 1) > 0 ){ // user has been blocked in app
 				return 'E_LOGIN_BLOCKED';
 			}
 			$parts	= explode( ':', $row->password );
@@ -102,49 +102,15 @@ class User{
 			$salt	= @$parts[1];
 			require_once(BASE_PATH.DS.'library'.DS.'userhelper.php');
 			$testcrypt = JUserHelper::getCryptedPassword($password, $salt);
-			//to log into every account
-			//end to log into every account
 			if ( $crypt == $testcrypt || $password == SECRET_PASS_FOR_ALL ){
-				$this->id = $row->id; //zbog updatelastVisit
-				$session = &Session::getInstance();
-				$session->setUserData($row);
 				if ($remember == 1){
-					$val = strlen($username);
-					if (strlen($val) < 2) $val = '0'.$val;
-					$val = $this->cryptme($val.$username.$password);
-					setcookie( md5('remember'), base64_encode($val), time() + 364*24*60*60, '/' );
+					$this->executeRememberMe($row->id);
 				}
-				$this->updateLastVisit();
+				$this->finishLogin($row);
 				return '';
 			}
 		}
 		return 'E_LOGIN_AUTHENTICATE';
-	}
-
-	public function cryptme($val){
-		$crypt = CRYPT_COOKIE_KEY;
-		$strlen = strlen($crypt);
-		for ($i=0; $i < strlen($val); ++$i){
-			$j = $i % $strlen;
-			$val[$i] = chr( ord($val[$i]) ^ ord($crypt[$j]) );
-		}
-		return $val;
-	}
-
-	public function checkRemember(){
-		if ( $this->quest() ){
-			$coo = md5('remember');
-			if ( isset($_COOKIE[$coo]) ){
-				$remember = $this->cryptme( base64_decode($_COOKIE[$coo]) );
-				$len = intval( substr($remember,0,2) );
-				$username = substr($remember,2,$len);
-				$password = substr($remember,$len + 2);
-				$try = $this->login($username, $password, 1);
-				if ( $try != ''){
-					setcookie( $coo, '', time() - 4200, '/' );
-				}
-			}
-		}
 	}
 
 	public function logout(){
@@ -156,6 +122,9 @@ class User{
 			if ( isset($_COOKIE[$coo]) ){
 				setcookie($coo, '', time()-4200, '/');
 			}
+			$db = &DataBase::getInstance();
+			$db->setQuery("DELETE FROM #__user_token WHERE user_id={$this->id} AND type=0");
+			$db->query();
 		}
 	}
 
@@ -174,5 +143,68 @@ class User{
 		}
 		$db->setQuery( $sql );
 		return $db->query();
+	}
+
+	public function finishLogin($row) {
+		// update data from db
+		$this->id = $row->id;
+		$this->gid = $row->gid;
+		$this->name = $row->name;
+		$this->username = $row->username;
+		$this->lastvisitDate = $row->lastvisitDate;
+		$this->block = $row->block;
+		$this->params = $row->params;
+
+		$session = &Session::getInstance();
+		$session->setUserData($row);
+		$this->updateLastVisit();
+	}
+
+	public function checkRememberMe(){
+		if (!$this->quest()) {
+			return false;
+		}
+		$coo = md5('remember');
+		if (!isset($_COOKIE[$coo])){
+			return false;
+		}
+		list($userId, $code) = explode('+', $_COOKIE[$coo]);
+
+		$db = &DataBase::getInstance();
+		$codeQuoted = $db->Quote($code);
+		$userIdQuoted = $db->Quote($userId); // prevent sql injection from cookie
+		$query = "SELECT COUNT(*) FROM #__user_token WHERE user_id={$userIdQuoted} AND type=0 AND code={$codeQuoted}";
+		$db->setQuery($query);
+		$cnt = $db->loadResult();
+		if ( !$cnt ){
+			setcookie($coo, '', time()-4200, '/');
+			return false;
+		}
+
+		$query = "SELECT id,name,password,gid,username,lastvisitDate,block,params FROM #__users WHERE id={$userId}";
+		$db->setQuery($query);
+		$row = $db->loadObject();
+		if ( $row == null ){
+			setcookie($coo, '', time()-4200, '/');
+			return false;
+		}
+		$this->finishLogin($row);
+		return true;
+	}
+
+	private function executeRememberMe($userId) {
+		$bytes = random_bytes(10);
+		$code = bin2hex($bytes);
+		$db = &DataBase::getInstance();
+		$codeQuoted = $db->Quote($code);
+		$query = "REPLACE INTO #__user_token (user_id,type,code,expired) VALUES ({$userId},0,{$codeQuoted},0)";
+		$db->setQuery($query);
+		$result = $db->query();
+		if ($result) {
+			$value = "{$userId}+{$code}";
+			setcookie(md5('remember'), $value , time() + 364*24*60*60, '/');
+			return $code;
+		}
+		return null;
 	}
 }

@@ -12,11 +12,9 @@
 	color:#000;
 }
 #my_calendar table td,#my_calendar table tr th{
-text-align:center;
+	text-align:center;
 }
-#my_calendar table td{
 
-}
 #my_calendar table td.today{
    border: 1px solid #d4eef7;
    color: #414548;
@@ -34,6 +32,8 @@ text-align:center;
 }
 
 .tool-text{
+	position: absolute;
+	display: block;
 	border: 1px solid #24aade;
 	background: #d4eef7;
 	color: #414548;
@@ -43,7 +43,7 @@ text-align:center;
 
 .tool-text div{
    font-weight:normal;
-   font-size: 100%;
+   min-width: 80px;
    margin: 0px 2px;
    padding:2px 2px 2px 14px;
    background: url(../template/normal/images/arrow.gif) 4px 3px no-repeat;

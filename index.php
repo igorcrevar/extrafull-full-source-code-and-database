@@ -15,7 +15,6 @@ ini_set('display_errors', 1);
 define( 'CREW', 1 );
 define( 'BASE_PATH', dirname(__FILE__) );
 define( 'DS', DIRECTORY_SEPARATOR );
-ini_set('session.use_only_cookies',1);
 require_once( BASE_PATH.DS.'application.php' );
 
 startSession(); // starts session before everything
@@ -31,7 +30,7 @@ if ( in_array( $user->ip, $bannedIPS ) ){
 	exit(0);
 }
 /* end banning */
-$user->checkRemember(); //uloguje me ako treba
+$user->checkRememberMe(); // check if user has correct remember me cookie
 
 $component = JRequest::getCmd('option', null);
 if ($component != null){
